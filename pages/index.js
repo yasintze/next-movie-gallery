@@ -2,32 +2,19 @@ import { Container } from 'semantic-ui-react';
 
 import { host } from '../config';
 import Meta from '../components/Meta';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import MovieList from '../components/MovieList';
 import styles from '../styles/Home.module.css';
 
 export default function Home({ movies: { data } }) {
     return (
         <div className={styles.container}>
             <Meta />
-            <Navbar />
 
             <Container>
                 <main className={styles.main}>
-                    {data &&
-                        data.map((movie) => {
-                            const { id, title, showTime } = movie;
-                            return (
-                                <div key={id}>
-                                    <h1>{title}</h1>
-                                    <span>{showTime}</span>
-                                </div>
-                            );
-                        })}
+                    <MovieList data={data} />
                 </main>
             </Container>
-
-            <Footer />
         </div>
     );
 }

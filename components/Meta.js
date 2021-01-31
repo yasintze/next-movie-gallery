@@ -1,5 +1,7 @@
 import Head from 'next/head';
 
+import { appTitle, appDesc } from '../config';
+
 const Meta = ({ title, desc }) => {
     return (
         <Head>
@@ -10,8 +12,8 @@ const Meta = ({ title, desc }) => {
 };
 
 Meta.defaultProps = {
-    title: 'Movie Gallery',
-    desc: 'An example of a simple movie gallery web apps built in Next.js'
+    title: appTitle,
+    desc: appDesc
 };
 
 export default Meta;
