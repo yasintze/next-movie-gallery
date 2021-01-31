@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
 import dayjs from 'dayjs';
 
 import LazyImage from '../components/LazyImage';

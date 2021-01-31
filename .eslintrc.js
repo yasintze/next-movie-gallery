@@ -24,6 +24,7 @@ module.exports = {
         'plugin:prettier/recommended'
     ],
     rules: {
+        'react/prop-types': 0,
         'react/react-in-jsx-scope': 'off',
         'jsx-a11y/anchor-is-valid': [
             'error',
