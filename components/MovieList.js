@@ -1,11 +1,47 @@
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { Card } from 'semantic-ui-react';
 
 import MovieItem from '../components/MovieItem';
 
-const MovieList = ({ data }) => {
+const MovieList = ({ data: { data: moviesData, curPage, maxPage } }) => {
+    const [movies, setMovies] = useState([]);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (moviesData && moviesData.length > 0) {
+            setMovies([...movies, ...moviesData]);
+        }
+    }, [moviesData]);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleInfiniteScroll);
+        return () => {
+            window.removeEventListener('scroll', handleInfiniteScroll);
+        };
+    });
+
+    const handleInfiniteScroll = () => {
+        const lastUserLoaded = document.querySelector('.cards > .card:last-child');
+        if (lastUserLoaded) {
+            const lastUserLoadedOffset = lastUserLoaded.offsetTop + lastUserLoaded.clientHeight;
+            const pageOffset = window.pageYOffset + window.innerHeight;
+            if (pageOffset > lastUserLoadedOffset) {
+                if (curPage < maxPage) {
+                    const query = router.query;
+                    query.page = parseInt(curPage) + 1;
+                    router.push({
+                        pathname: router.pathname,
+                        query: query
+                    });
+                }
+            }
+        }
+    };
+
     return (
         <Card.Group>
-            {data && data.map((movie) => <MovieItem key={movie.id} data={movie} />)}
+            {movies.length > 0 && movies.map((movie) => <MovieItem key={movie.id} data={movie} />)}
         </Card.Group>
     );
 };

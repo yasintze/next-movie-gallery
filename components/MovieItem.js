@@ -7,13 +7,14 @@ import movieItemStyles from '../styles/MovieItem.module.css';
 
 const MovieItem = ({ data: { id, title, showTime, image, like } }) => {
     const formattedTime = dayjs(showTime).format('DD MMM YYYY | HH:mm');
+
     return (
         <Card fluid>
             <LazyImage src={`${image}${id}/320/240`} fluid={true} />
             <Card.Content>
                 <Card.Header>
                     <Link href={`/detail/${id}`} style={movieItemStyles.titleCursor}>
-                        {title}
+                        {`${title} (${id})`}
                     </Link>
                 </Card.Header>
                 <Card.Meta>{formattedTime}</Card.Meta>

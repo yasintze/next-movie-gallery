@@ -4,22 +4,20 @@ export default (req, res) => {
     const {
         query: { page }
     } = req;
+    const limit = 10;
 
     let data = [];
-    let total = 0;
+    let maxPage = Math.ceil(moviesData.length / limit);
 
     if (!page) {
         data = moviesData;
-        total = moviesData.length;
     } else {
-        const limit = 10;
         const startId = (page - 1) * limit;
         const endId = page * limit;
         const filtered = moviesData.filter((movie) => movie.id > startId && movie.id <= endId);
 
         data = filtered;
-        total = filtered.length;
     }
 
-    res.status(200).json({ data, total });
+    res.status(200).json({ data, curPage: parseInt(page), maxPage });
 };
