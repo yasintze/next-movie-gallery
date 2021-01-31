@@ -13,8 +13,8 @@ const MovieItem = ({ data: { id, title, showTime, image, like } }) => {
             <LazyImage src={`${image}${id}/320/240`} fluid={true} />
             <Card.Content>
                 <Card.Header>
-                    <Link href={`/detail/${id}`} style={movieItemStyles.titleCursor}>
-                        {`${title} (${id})`}
+                    <Link href={`/detail/${id}`} className={movieItemStyles.titleCursor}>
+                        {title}
                     </Link>
                 </Card.Header>
                 <Card.Meta>{formattedTime}</Card.Meta>

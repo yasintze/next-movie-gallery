@@ -4,12 +4,14 @@ import { Card } from 'semantic-ui-react';
 
 import MovieItem from '../components/MovieItem';
 
-const MovieList = ({ data: { data: moviesData, curPage, maxPage } }) => {
+const MovieList = ({ data: { data: moviesData, curPage, maxPage, isFiltered } }) => {
     const [movies, setMovies] = useState([]);
     const router = useRouter();
 
     useEffect(() => {
-        if (moviesData && moviesData.length > 0) {
+        if (isFiltered || curPage === 1) {
+            setMovies(moviesData);
+        } else {
             setMovies([...movies, ...moviesData]);
         }
     }, [moviesData]);

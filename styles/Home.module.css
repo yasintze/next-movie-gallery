@@ -3,6 +3,11 @@
     padding: 0 0.5rem;
 }
 
+.filter {
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+}
+
 .main {
     padding: 5rem 0;
 }

@@ -1,6 +1,7 @@
 import { Container } from 'semantic-ui-react';
 
 import { host } from '../config';
+import Filter from '../components/Filter';
 import Meta from '../components/Meta';
 import MovieList from '../components/MovieList';
 import styles from '../styles/Home.module.css';
@@ -12,6 +13,9 @@ export default function Home({ movies }) {
 
             <Container>
                 <main className={styles.main}>
+                    <div className={styles.filter}>
+                        <Filter />
+                    </div>
                     <MovieList data={movies} />
                 </main>
             </Container>
@@ -20,8 +24,12 @@ export default function Home({ movies }) {
 }
 
 export async function getServerSideProps({ query }) {
-    const page = query.page || 1;
-    const res = await fetch(`${host}/api/movies?page=${page}`);
+    const params = new URLSearchParams({
+        page: query.page || 1,
+        title: query.title || '',
+        date: query.date || ''
+    });
+    const res = await fetch(`${host}/api/movies?${params.toString()}`);
     const data = await res.json();
 
     return {
