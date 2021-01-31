@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Container, Menu } from 'semantic-ui-react';
 
 import { appTitle } from '../config';
@@ -7,8 +8,8 @@ const Navbar = () => {
         <>
             <Menu fixed="top" inverted>
                 <Container>
-                    <Menu.Item as="a" header>
-                        {appTitle}
+                    <Menu.Item header>
+                        <Link href="/">{appTitle}</Link>
                     </Menu.Item>
                 </Container>
             </Menu>

@@ -1,4 +1,5 @@
-import { Card, Container, Icon, Image } from 'semantic-ui-react';
+import Link from 'next/link';
+import { Breadcrumb, Card, Container, Icon, Image } from 'semantic-ui-react';
 import dayjs from 'dayjs';
 import { loremIpsum } from 'lorem-ipsum';
 
@@ -21,6 +22,13 @@ const Detail = ({ movies: { id, title, showTime, image, like } }) => {
 
             <Container>
                 <main className={styles.main}>
+                    <Breadcrumb>
+                        <Breadcrumb.Section>
+                            <Link href="/">Home</Link>
+                        </Breadcrumb.Section>
+                        <Breadcrumb.Divider />
+                        <Breadcrumb.Section active>Movie Detail: {title}</Breadcrumb.Section>
+                    </Breadcrumb>
                     <Card fluid>
                         <Image src={`${image}${id}/800/600`} fluid />
                         <Card.Content>

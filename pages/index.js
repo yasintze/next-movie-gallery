@@ -19,8 +19,9 @@ export default function Home({ movies: { data } }) {
     );
 }
 
-export async function getStaticProps() {
-    const res = await fetch(`${host}/api/movies?page=1`);
+export async function getServerSideProps({ query }) {
+    const page = query.page || 1;
+    const res = await fetch(`${host}/api/movies?page=${page}`);
     const data = await res.json();
 
     return {
